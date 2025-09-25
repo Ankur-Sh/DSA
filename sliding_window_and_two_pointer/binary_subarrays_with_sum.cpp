@@ -1,4 +1,7 @@
 //arr[1,0,0,1,1,0] goal=2;
+
+//count-number-of-nice-subarrays  [1,1,2,1,1], k = 3    just convert odd numbers to 1 and even numbers to 0 
+// and then after the question is converted into above question
 #include<iostream>
 using namespace std;
 
