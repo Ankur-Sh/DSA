@@ -1,14 +1,14 @@
-//left root right
+//left right root
 #include<iostream>
 using namespace std;
 struct Node{
-int data;
-Node* left;
-Node* right;
-Node(int val){
-    data=val;
-    left=right=nullptr;
-}
+    int data;
+    Node* left;
+    Node* right;
+    Node(int val){
+        data=val;
+        left=right=nullptr;
+    }
 };
 Node* insert(Node* root,int val){
     if(root==nullptr) return new Node(val);
@@ -16,11 +16,11 @@ Node* insert(Node* root,int val){
     else root->right=insert(root->right,val);
     return root;
 }
-void inorderTraversal(Node* root){
+void postOrderTraversal(Node* root){
     if(root==nullptr) return;
-    inorderTraversal(root->left);
+    postOrderTraversal(root->left);
+    postOrderTraversal(root->right);
     cout<<root->data;
-    inorderTraversal(root->right);
 }
 int main(){
     Node* root=nullptr;
@@ -31,6 +31,6 @@ int main(){
     insert(root, 70);
     insert(root, 60);
     insert(root, 80);
-    inorderTraversal(root);
+    postOrderTraversal(root);
     return 0;
 }
