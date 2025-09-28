@@ -17,26 +17,29 @@ Node* insert(Node* root,int val){
     else root->right=insert(root->right,val);
     return root;
 }
-vector<vector<int>> levelOrderTraversal(Node* root){
+vector<vector<int>> zigzagTraversal(Node* root){
     vector<vector<int>> ans;
     if(root==nullptr) return ans;
     queue<Node*> q;
     q.push(root);
+    bool leftToRight=true;
     while(!q.empty()){
         int size=q.size();
-        vector<int> level;
+        vector<int> level(size);
         for(int i=0;i<size;i++){
             Node* node=q.front();
             q.pop();
+            int index= leftToRight?i:(size-1-i);
             if(node->left!=nullptr) q.push(node->left);
             if(node->right!=nullptr) q.push(node->right);
-            level.push_back(node->data);
+            level[index]=(node->data);
         }
+        leftToRight=!leftToRight;
         ans.push_back(level);
     }
     return ans;
 }
-void printLevelOrderTraversal(const vector<vector<int>>& ans) {
+void printzigzagTraversal(const vector<vector<int>>& ans) {
     for (const auto& level : ans) {
         for (int val : level) {
             cout << val << " ";
@@ -53,7 +56,7 @@ int main(){
     insert(root, 70);
     insert(root, 60);
     insert(root, 80);
-    vector<vector<int>> result=levelOrderTraversal(root);
-    printLevelOrderTraversal(result);
+    vector<vector<int>> result=zigzagTraversal(root);
+    printzigzagTraversal(result);
     return 0;
 }
